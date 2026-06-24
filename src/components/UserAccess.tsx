@@ -344,9 +344,8 @@ export function UserAccess({
         </div>
       )}
 
-      {/* Filters & Search Bar */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-white border border-[#E1E4E8] rounded p-4 shadow-sm">
-        <div className="md:col-span-2 relative">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white border border-[#E1E4E8] rounded p-4 shadow-sm">
+        <div className="sm:col-span-2 relative">
           <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
@@ -453,8 +452,8 @@ export function UserAccess({
 
       {/* Modals: View & Edit */}
       {isViewing && selectedUser && (
-        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
-          <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl overflow-hidden border border-[#E1E4E8] animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl overflow-hidden border border-[#E1E4E8] animate-in zoom-in-95 duration-200 my-auto max-h-[95vh] overflow-y-auto">
             <div className="bg-[#4F46E5] p-6 text-white relative">
               <button onClick={() => setIsViewing(false)} className="absolute top-4 right-4 text-white/70 hover:text-white"><X className="h-5 w-5" /></button>
               <div className="flex items-center gap-4">
@@ -508,8 +507,8 @@ export function UserAccess({
       )}
 
       {isEditing && selectedUser && (
-        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
-          <div className="bg-white rounded border border-[#E1E4E8] shadow-2xl w-full max-w-lg overflow-hidden animate-in slide-in-from-bottom-2 duration-300">
+        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200 overflow-y-auto">
+          <div className="bg-white rounded border border-[#E1E4E8] shadow-2xl w-full max-w-lg overflow-hidden animate-in slide-in-from-bottom-2 duration-300 my-auto max-h-[95vh] overflow-y-auto">
             <div className="p-4 border-b border-[#F1F3F5] flex justify-between items-center bg-slate-50">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#1A1D21]">Edit User: {selectedUser.name}</h3>
               <button onClick={() => setIsEditing(false)} className="text-gray-400 hover:text-gray-600"><X className="h-4 w-4" /></button>
@@ -561,8 +560,8 @@ export function UserAccess({
       )}
 
       {isResetting && selectedUser && (
-        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
-          <div className="bg-white rounded border border-[#E1E4E8] shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200 overflow-y-auto">
+          <div className="bg-white rounded border border-[#E1E4E8] shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200 my-auto max-h-[95vh] overflow-y-auto">
             <div className="p-4 border-b border-[#F1F3F5] flex justify-between items-center bg-slate-50">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#1A1D21] flex items-center gap-1.5">
                 <Key className="h-4 w-4 text-[#4F46E5]" />

@@ -119,7 +119,7 @@ export function DagmoDetail() {
           }`}>{dagmo.status}</span>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-[#E1E4E8]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 pt-4 border-t border-[#E1E4E8]">
           <div className="flex items-center gap-2">
             <MapPin className="h-4 w-4 text-[#8A8F98]" />
             <div>
@@ -217,8 +217,8 @@ export function DagmoDetail() {
 
       {/* Add Seedka Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden my-auto max-h-[95vh] flex flex-col">
             <div className="flex items-center justify-between px-6 py-4 border-b border-[#E1E4E8]">
               <div>
                 <h2 className="text-sm font-bold text-[#1A1D21]">Add Seedka</h2>
@@ -262,8 +262,8 @@ export function DagmoDetail() {
 
       {/* Edit Seedka Modal */}
       {editSeedka && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden my-auto max-h-[95vh] flex flex-col">
             <div className="flex items-center justify-between px-6 py-4 border-b border-[#E1E4E8]">
               <h2 className="text-sm font-bold text-[#1A1D21]">Edit Seedka</h2>
               <button onClick={() => setEditSeedka(null)} className="text-[#8A8F98] hover:text-[#1A1D21] transition-colors">

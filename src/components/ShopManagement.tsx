@@ -289,7 +289,7 @@ export function ShopManagement({
 
           {/* Filter Bar Grid (Notion + Linear Style) */}
           <div className="bg-white border border-[#E1E4E8] p-4 rounded space-y-3 shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
               {/* Search */}
               <div className="relative">
                 <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-gray-400" />
@@ -597,8 +597,7 @@ export function ShopManagement({
           </div>
 
           <form onSubmit={handleSubmit} className="bg-white border border-[#E1E4E8] rounded p-5 space-y-4 shadow-sm">
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Name */}
               <div className="space-y-1">
                 <label className="text-[10px] font-bold text-gray-500 uppercase">SHOP NAME</label>
@@ -753,8 +752,8 @@ export function ShopManagement({
 
       {/* Collect Payment Modal */}
       {collectShop && (
-        <div className="fixed inset-0 bg-black/45 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white rounded border border-[#E1E4E8] p-5 max-w-sm w-full shadow-md space-y-4">
+        <div className="fixed inset-0 bg-black/45 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fade-in overflow-y-auto">
+          <div className="bg-white rounded border border-[#E1E4E8] p-5 max-w-sm w-full shadow-md space-y-4 my-auto max-h-[95vh] overflow-y-auto">
             <div className="flex justify-between items-center border-b border-[#F1F3F5] pb-3">
               <h3 className="text-sm font-bold uppercase tracking-wider text-gray-900">Collect Payment</h3>
               <button onClick={() => { setCollectShop(null); setPaymentAmount(""); setPaymentNotes(""); }} className="text-gray-400 hover:text-gray-600">
@@ -841,8 +840,8 @@ export function ShopManagement({
 
       {/* Mark Not Paid Confirmation Modal */}
       {confirmDeletePaymentId && (
-        <div className="fixed inset-0 bg-black/45 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white rounded border border-rose-100 p-6 max-w-sm w-full shadow-xl space-y-4">
+        <div className="fixed inset-0 bg-black/45 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fade-in overflow-y-auto">
+          <div className="bg-white rounded border border-rose-100 p-6 max-w-sm w-full shadow-xl space-y-4 my-auto max-h-[95vh] overflow-y-auto">
             <div className="flex items-center gap-3 text-rose-600">
               <div className="p-2 bg-rose-50 rounded-full">
                 <Ban className="h-6 w-6" />
@@ -876,8 +875,8 @@ export function ShopManagement({
 
       {/* Delete Shop Confirmation Modal */}
       {confirmDeleteShopId && (
-        <div className="fixed inset-0 bg-black/45 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white rounded border border-[#E1E4E8] p-5 max-w-sm w-full space-y-4 shadow-xl">
+        <div className="fixed inset-0 bg-black/45 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fade-in overflow-y-auto">
+          <div className="bg-white rounded border border-[#E1E4E8] p-5 max-w-sm w-full space-y-4 shadow-xl my-auto max-h-[95vh] overflow-y-auto">
             <div className="flex items-center gap-3 text-rose-600">
               <div className="w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center">
                 <X className="h-5 w-5" />

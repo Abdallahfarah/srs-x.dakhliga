@@ -1,12 +1,12 @@
-import React from "react";
-import { Bell, Search, User as UserIcon, LogOut, ChevronRight, LayoutDashboard, Store, Receipt, Users, Settings } from "lucide-react";
+import { Bell, Search, User as UserIcon, LogOut, ChevronRight, LayoutDashboard, Store, Receipt, Users, Settings, Menu } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 
 interface HeaderProps {
   activeTab: string;
+  onMenuToggle?: () => void;
 }
 
-export function Header({ activeTab }: HeaderProps) {
+export function Header({ activeTab, onMenuToggle }: HeaderProps) {
   const { currentUser, logout } = useAuth();
 
   const getBreadcrumb = () => {
@@ -23,9 +23,16 @@ export function Header({ activeTab }: HeaderProps) {
   const bc = getBreadcrumb();
 
   return (
-    <header className="h-14 bg-white border-b border-[#E1E4E8] flex items-center justify-between px-6 sticky top-0 z-40 font-sans">
-      {/* Search & Orientation */}
-      <div className="flex items-center gap-6">
+    <header className="h-14 bg-white border-b border-[#E1E4E8] flex items-center justify-between px-4 md:px-6 sticky top-0 z-40 font-sans">
+      {/* Menu Toggle & Search */}
+      <div className="flex items-center gap-2 md:gap-6">
+        <button 
+          onClick={onMenuToggle}
+          className="p-2 -ml-2 text-gray-500 hover:text-[#1A1D21] hover:bg-gray-50 rounded md:hidden transition-colors"
+        >
+          <Menu className="h-5 w-5" />
+        </button>
+
         <div className="relative group hidden sm:block">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400 group-focus-within:text-[#4F46E5] transition-colors" />
           <input

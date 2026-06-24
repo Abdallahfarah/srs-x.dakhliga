@@ -258,7 +258,7 @@ export function PaymentLogs({
 
           {/* Filters (Notion-theme Stripe-Like) */}
           <div className="bg-white border border-[#E1E4E8] p-4 rounded shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               <div className="relative">
                 <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-gray-400" />
                 <input
@@ -917,8 +917,8 @@ export function PaymentLogs({
 
       {/* ===== EDIT PAYMENT MODAL ===== */}
       {isEditing && detailPay && (
-        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
-          <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg overflow-hidden border border-[#E1E4E8] animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg overflow-hidden border border-[#E1E4E8] animate-in zoom-in-95 duration-200 my-auto max-h-[95vh] overflow-y-auto">
             <div className="bg-[#4F46E5] p-4 text-white flex items-center justify-between">
               <h3 className="font-bold text-sm">Modify Payment Parameters</h3>
               <button onClick={() => setIsEditing(false)} className="text-white/70 hover:text-white"><X className="h-4 w-4" /></button>
@@ -969,8 +969,8 @@ export function PaymentLogs({
 
       {/* ===== LOCK CONFIRMATION MODAL ===== */}
       {showLockConfirm && detailPay && (
-        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
-          <div className="bg-white rounded-lg shadow-2xl w-full max-w-sm overflow-hidden border border-[#E1E4E8] animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-2xl w-full max-w-sm overflow-hidden border border-[#E1E4E8] animate-in zoom-in-95 duration-200 my-auto max-h-[95vh] overflow-y-auto">
             <div className="bg-[#1A1D21] p-4 text-white">
               <h3 className="font-bold text-sm flex items-center gap-2"><Lock className="h-4 w-4" /> Lock Payment Record</h3>
             </div>
@@ -990,8 +990,8 @@ export function PaymentLogs({
 
       {/* ===== PURGE STEP 1 MODAL ===== */}
       {showPurgeStep1 && detailPay && (
-        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
-          <div className="bg-white rounded-lg shadow-2xl w-full max-w-sm overflow-hidden border border-rose-200 animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-2xl w-full max-w-sm overflow-hidden border border-rose-200 animate-in zoom-in-95 duration-200 my-auto max-h-[95vh] overflow-y-auto">
             <div className="bg-rose-600 p-4 text-white">
               <h3 className="font-bold text-sm">Delete Payment?</h3>
             </div>
@@ -1011,8 +1011,8 @@ export function PaymentLogs({
 
       {/* ===== PURGE STEP 2 MODAL (Type DELETE) ===== */}
       {showPurgeStep2 && detailPay && (
-        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
-          <div className="bg-white rounded-lg shadow-2xl w-full max-w-sm overflow-hidden border border-rose-200 animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 bg-[#1A1D21]/40 backdrop-blur-[2px] flex items-center justify-center p-4 z-50 animate-in fade-in duration-200 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-2xl w-full max-w-sm overflow-hidden border border-rose-200 animate-in zoom-in-95 duration-200 my-auto max-h-[95vh] overflow-y-auto">
             <div className="bg-rose-700 p-4 text-white">
               <h3 className="font-bold text-sm">Final Confirmation Required</h3>
             </div>

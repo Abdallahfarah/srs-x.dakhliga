@@ -8,9 +8,11 @@ import { useAuth } from "../contexts/AuthContext";
 
 interface SidebarProps {
   onAddShop: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-export function Sidebar({ onAddShop }: SidebarProps) {
+export function Sidebar({ onAddShop, isOpen, onClose }: SidebarProps) {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,7 +28,20 @@ export function Sidebar({ onAddShop }: SidebarProps) {
   const isActive = (path: string) => location.pathname.includes(path);
 
   return (
-    <aside className="w-64 bg-[#0B0C0E] text-[#8A8F98] shrink-0 hidden md:flex flex-col justify-between border-r border-[#1F2124] h-screen sticky top-0 font-sans">
+    <>
+      {/* Mobile Backdrop */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden animate-fade-in"
+          onClick={onClose}
+        />
+      )}
+
+      <aside className={`
+        fixed inset-y-0 left-0 z-50 w-64 bg-[#0B0C0E] text-[#8A8F98] flex flex-col justify-between border-r border-[#1F2124] transition-transform duration-300 ease-in-out font-sans
+        md:translate-x-0 md:static md:h-screen md:sticky md:top-0
+        ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
+      `}>
       <div className="flex flex-col flex-1">
         {/* Logo Header */}
         <div className="p-4 flex items-center gap-3 border-b border-[#1F2124]">
@@ -158,5 +173,6 @@ export function Sidebar({ onAddShop }: SidebarProps) {
         </button>
       </div>
     </aside>
+  </>
   );
 }

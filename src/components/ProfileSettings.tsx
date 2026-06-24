@@ -101,7 +101,7 @@ export function ProfileSettings({ currentUser, onUpdateCurrentUser }: ProfileSet
         </div>
 
         {/* Inputs layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Full Name */}
           <div className="space-y-1">
             <label className="text-[10px] font-bold text-gray-500 uppercase">Full Name</label>
@@ -187,8 +187,8 @@ export function ProfileSettings({ currentUser, onUpdateCurrentUser }: ProfileSet
       </div>
 
       {showPassModal && (
-        <div className="fixed inset-0 bg-black/45 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="bg-white rounded border border-[#E1E4E8] p-5 max-w-xs w-full space-y-3.5 shadow-md">
+        <div className="fixed inset-0 bg-black/45 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fade-in overflow-y-auto">
+          <div className="bg-white rounded border border-[#E1E4E8] p-5 max-w-xs w-full space-y-3.5 shadow-md my-auto max-h-[95vh] overflow-y-auto">
             <div className="flex justify-between items-center pb-2 border-b border-[#F1F3F5]">
               <h3 className="text-xs font-bold uppercase tracking-wider text-gray-900">Change Password</h3>
               <button onClick={() => setShowPassModal(false)} className="text-gray-400 hover:text-gray-600 font-bold">×</button>

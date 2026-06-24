@@ -127,7 +127,7 @@ export function DagmoManagement() {
   return (
     <div className="p-6 font-sans">
       {/* Page Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
           <div className="flex items-center gap-2 text-[#5E6269] text-xs mb-1">
             <Building2 className="h-3.5 w-3.5" />
@@ -139,7 +139,7 @@ export function DagmoManagement() {
           <p className="text-[#8A8F98] text-xs mt-0.5">Manage all regional Dagmo divisions and their Seedkas.</p>
         </div>
         <button onClick={openCreate}
-          className="flex items-center gap-2 px-4 py-2 bg-[#4F46E5] hover:bg-[#4338CA] text-white text-xs font-semibold rounded-lg transition-colors shadow-sm">
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-[#4F46E5] hover:bg-[#4338CA] text-white text-xs font-semibold rounded-lg transition-colors shadow-sm shrink-0">
           <Plus className="h-3.5 w-3.5" />
           Create Dagmo
         </button>
@@ -213,8 +213,8 @@ export function DagmoManagement() {
 
       {/* CREATE MODAL — with Seedkas */}
       {showCreateModal && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden max-h-[90vh] flex flex-col">
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden my-auto max-h-[95vh] flex flex-col">
             <div className="flex items-center justify-between px-6 py-4 border-b border-[#E1E4E8] shrink-0">
               <h2 className="text-sm font-bold text-[#1A1D21]">Create Dagmo</h2>
               <button onClick={() => setShowCreateModal(false)} className="text-[#8A8F98] hover:text-[#1A1D21] transition-colors">
@@ -294,8 +294,8 @@ export function DagmoManagement() {
 
       {/* EDIT MODAL */}
       {editDagmo && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden my-auto max-h-[95vh] flex flex-col">
             <div className="flex items-center justify-between px-6 py-4 border-b border-[#E1E4E8]">
               <h2 className="text-sm font-bold text-[#1A1D21]">Edit Dagmo</h2>
               <button onClick={() => setEditDagmo(null)} className="text-[#8A8F98] hover:text-[#1A1D21] transition-colors">
