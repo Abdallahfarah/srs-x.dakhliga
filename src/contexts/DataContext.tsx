@@ -102,7 +102,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         name: s.name,
         dagmoId: s.dagmo_id,
         seedkaId: s.seedka_id,
-        ownerName: s.owner_name,
+        ownerName: s.owner_name || "",
+        tNumber: s.t_number || "",
         phone: s.phone || "",
         type: s.shop_type || "Retail",
         status: s.status as ShopStatus,
@@ -211,6 +212,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const { data, error } = await supabase.from('shops').insert({
         name: newShop.name,
         owner_name: newShop.ownerName,
+        t_number: newShop.tNumber,
         phone: newShop.phone,
         dagmo_id: newShop.dagmoId,
         seedka_id: newShop.seedkaId,

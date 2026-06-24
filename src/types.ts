@@ -39,6 +39,7 @@ export interface Shop {
   dagmoId: string;
   seedkaId: string;
   ownerName: string;
+  tNumber: string;
   phone: string;
   type: string;
   status: ShopStatus;

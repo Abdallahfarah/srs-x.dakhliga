@@ -49,6 +49,7 @@ export function ShopManagement({
   const [formDagmo, setFormDagmo] = useState("");
   const [formSeedka, setFormSeedka] = useState("");
   const [formOwner, setFormOwner] = useState("");
+  const [formTNumber, setFormTNumber] = useState("");
   const [formPhone, setFormPhone] = useState("");
   const [formType, setFormType] = useState("");
   const [formCustomType, setFormCustomType] = useState("");
@@ -73,8 +74,13 @@ export function ShopManagement({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formName.trim() || !formDagmo || !formSeedka || !formOwner.trim() || !formType || !formPhone.trim()) {
-      showToast("All fields, including Shop Type and Phone, are required.", "error");
+    if (!formName.trim() || !formDagmo || !formSeedka || !formOwner.trim() || !formType || !formPhone.trim() || !formTNumber.trim()) {
+      showToast("All fields, including T-Number and Phone, are required.", "error");
+      return;
+    }
+
+    if (formTNumber.trim().length < 5 || formTNumber.trim().length > 30) {
+      showToast("T-Number must be between 5 and 30 characters.", "error");
       return;
     }
 
@@ -93,6 +99,7 @@ export function ShopManagement({
         dagmoId: formDagmo,
         seedkaId: formSeedka,
         ownerName: formOwner,
+        tNumber: formTNumber.trim(),
         phone: formPhone,
         type: finalType,
         status: formStatus,
@@ -101,10 +108,11 @@ export function ShopManagement({
 
       showToast(`Shop "${formName}" (${finalType}) registered successfully.`, "success");
       setFormName("");
+      setFormOwner("");
+      setFormTNumber("");
+      setFormPhone("");
       setFormDagmo("");
       setFormSeedka("");
-      setFormOwner("");
-      setFormPhone("");
       setFormType("");
       setFormCustomType("");
       setFormStatus("Active");
@@ -206,6 +214,7 @@ export function ShopManagement({
     const matchesSearch = shop.name.toLowerCase().includes(search.toLowerCase()) ||
                           shop.ownerName.toLowerCase().includes(search.toLowerCase()) ||
                           shop.type.toLowerCase().includes(search.toLowerCase()) ||
+                          shop.tNumber.toLowerCase().includes(search.toLowerCase()) ||
                           shop.code.toLowerCase().includes(search.toLowerCase());
     
     const matchesDagmo = selectedDagmo === "All" || shop.dagmoId === selectedDagmo;
@@ -227,7 +236,7 @@ export function ShopManagement({
 
   const handleExport = () => {
     // Elegant simulated download action
-    const headers = "ID,Shop Name,Type,Phone,Dagmo,Seedka,Owner,Status,Payment Status,Created Date\n";
+    const headers = "ID,Shop Name,T-Number,Type,Phone,Dagmo,Seedka,Owner,Status,Payment Status,Created Date\n";
     const currentMonth = new Date().toLocaleString('en-US', { month: 'long' });
     const currentYear = new Date().getFullYear().toString();
 
@@ -235,7 +244,7 @@ export function ShopManagement({
       const dName = dagmos.find(d => d.id === s.dagmoId)?.name || "Unknown";
       const sName = seedkas.find(sd => sd.id === s.seedkaId)?.name || "Unknown";
       const isPaid = payments.some(p => p.shopId === s.id && p.month === currentMonth && p.year === currentYear && p.status === 'Paid');
-      return `"${s.id}","${s.name}","${s.type}","${s.phone}","${dName}","${sName}","${s.ownerName}","${s.status}","${isPaid ? 'Paid' : 'Not Paid'}","${s.createdDate}"`;
+      return `"${s.id}","${s.name}","${s.tNumber}","${s.type}","${s.phone}","${dName}","${sName}","${s.ownerName}","${s.status}","${isPaid ? 'Paid' : 'Not Paid'}","${s.createdDate}"`;
     }).join("\n");
 
     const blob = new Blob([headers + rows], { type: "text/csv" });
@@ -375,6 +384,9 @@ export function ShopManagement({
                       SHOP NAME
                     </th>
                     <th className="py-2.5 px-4 text-[10px] uppercase font-bold text-[#5E6269] tracking-wider">
+                      T-NUMBER
+                    </th>
+                    <th className="py-2.5 px-4 text-[10px] uppercase font-bold text-[#5E6269] tracking-wider">
                       TYPE
                     </th>
                     <th className="py-2.5 px-4 text-[10px] uppercase font-bold text-[#5E6269] tracking-wider">
@@ -422,6 +434,9 @@ export function ShopManagement({
                                 <div className="text-[10px] text-gray-400 font-mono mt-0.5">Code: {shop.code}</div>
                               </div>
                             </div>
+                          </td>
+                          <td className="py-3 px-4 text-gray-700 font-medium">
+                             {shop.tNumber}
                           </td>
                           <td className="py-3 px-4">
                              <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
@@ -604,6 +619,18 @@ export function ShopManagement({
                   placeholder="e.g. Eleanor Vance"
                   value={formOwner}
                   onChange={(e) => setFormOwner(e.target.value)}
+                  className="w-full py-1.5 px-2 bg-white border border-[#E1E4E8] rounded text-xs focus:outline-none focus:border-[#4F46E5]"
+                />
+              </div>
+
+              {/* T-Number */}
+              <div className="space-y-1">
+                <label className="text-[10px] font-bold text-gray-500 uppercase">T-Number *</label>
+                <input
+                  type="text"
+                  placeholder="Enter T-Number (e.g. 1000123456)"
+                  value={formTNumber}
+                  onChange={(e) => setFormTNumber(e.target.value)}
                   className="w-full py-1.5 px-2 bg-white border border-[#E1E4E8] rounded text-xs focus:outline-none focus:border-[#4F46E5]"
                 />
               </div>
