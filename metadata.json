@@ -1,0 +1,6 @@
+{
+  "name": "Precision Ledger",
+  "description": "High-performance enterprise payment tracking and ledger platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
