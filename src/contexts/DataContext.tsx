@@ -123,12 +123,12 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         .select(`
           *,
           profiles!payments_created_by_fkey(email),
-          shops(
+          shops:shop_id(
             name,
             dagmo_id,
             seedka_id,
-            dagmos(name),
-            seedkas(name)
+            dagmo:dagmo_id(name),
+            seedka:seedka_id(name)
           )
         `)
         .order('created_at', { ascending: false });
@@ -146,8 +146,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         amount: p.amount,
         dagmoId: p.shops?.dagmo_id || '',
         seedkaId: p.shops?.seedka_id || '',
-        dagmoName: p.shops?.dagmos?.name || 'Unknown',
-        seedkaName: p.shops?.seedkas?.name || 'Unknown',
+        dagmoName: (p.shops as any)?.dagmo?.name || 'Unknown',
+        seedkaName: (p.shops as any)?.seedka?.name || 'Unknown',
         month: p.month,
         year: p.year,
         status: p.status as PaymentStatus,
