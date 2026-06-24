@@ -343,6 +343,8 @@ export function DagmoManagement() {
             </form>
           </div>
         </div>
+      )}
+
       {/* DEPENDENCY WARNING MODAL */}
       {dependencyWarning && (
         <div className="fixed inset-0 z-[60] bg-[#1A1D21]/60 backdrop-blur-sm flex items-center justify-center p-4">
