@@ -22,6 +22,7 @@ export function DagmoManagement() {
 
   const [errorMsg, setErrorMsg] = useState("");
   const [deleteError, setDeleteError] = useState("");
+  const [dependencyWarning, setDependencyWarning] = useState<{ count: number; names: string[]; dagmoId: string } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const filtered = dagmos.filter(d =>
@@ -115,6 +116,17 @@ export function DagmoManagement() {
   };
 
   const handleDelete = async (id: string) => {
+    // Check for dependencies locally first
+    const linkedSeedkas = seedkas.filter(s => s.dagmoId === id);
+    if (linkedSeedkas.length > 0) {
+      setDependencyWarning({
+        count: linkedSeedkas.length,
+        names: linkedSeedkas.map(s => s.name),
+        dagmoId: id
+      });
+      return;
+    }
+
     if (!window.confirm("Are you sure you want to delete this Dagmo?")) return;
     const result = await handleDeleteDagmo(id);
     if (result.error) {
@@ -329,6 +341,52 @@ export function DagmoManagement() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      {/* DEPENDENCY WARNING MODAL */}
+      {dependencyWarning && (
+        <div className="fixed inset-0 z-[60] bg-[#1A1D21]/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden border border-[#E1E4E8] animate-in zoom-in-95 duration-200">
+            <div className="p-6 text-center">
+              <div className="w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-rose-100">
+                <Trash2 className="h-6 w-6 text-rose-500" />
+              </div>
+              <h3 className="text-sm font-bold text-[#1A1D21] mb-2">Deletion Blocked</h3>
+              <p className="text-xs text-[#5E6269] leading-relaxed mb-4">
+                This Dagmo contains <span className="font-bold text-[#1A1D21]">{dependencyWarning.count} active Seedkas</span> and cannot be deleted until they are moved or removed.
+              </p>
+
+              <div className="bg-[#F9FAFB] border border-[#E1E4E8] rounded-lg p-3 mb-6 text-left max-h-32 overflow-y-auto">
+                <p className="text-[10px] font-bold text-[#8A8F98] uppercase tracking-wider mb-2">Affected Seedkas:</p>
+                <ul className="space-y-1">
+                  {dependencyWarning.names.map((name, i) => (
+                    <li key={i} className="flex items-center gap-2 text-xs text-[#1A1D21] font-medium">
+                      <div className="w-1 h-1 bg-[#4F46E5] rounded-full" />
+                      {name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => {
+                    navigate(`/super-admin/dagmos/${dependencyWarning.dagmoId}`);
+                    setDependencyWarning(null);
+                  }}
+                  className="w-full py-2 bg-[#4F46E5] hover:bg-[#4338CA] text-white text-xs font-bold rounded-lg transition-all shadow-sm flex items-center justify-center gap-2"
+                >
+                  <Eye className="h-3.5 w-3.5" />
+                  Manage Seedkas
+                </button>
+                <button
+                  onClick={() => setDependencyWarning(null)}
+                  className="w-full py-2 bg-white border border-[#E1E4E8] hover:bg-gray-50 text-[#5E6269] text-xs font-bold rounded-lg transition-all"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
